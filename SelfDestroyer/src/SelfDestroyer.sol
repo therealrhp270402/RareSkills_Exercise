@@ -13,6 +13,8 @@ contract SelfDestroyer {
 
     function destroy(address taker) external {
         // your code here
+        require(taker != address(0), "Invalid address");
+        selfdestruct(payable(taker));
     }
 
     function getBalance() public view returns (uint256 balance) {

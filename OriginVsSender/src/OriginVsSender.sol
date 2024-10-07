@@ -17,5 +17,7 @@ contract OriginVsSender {
 
     function setNumber(uint256 num) external {
         /// your code here
+        require(tx.origin == msg.sender, "Only EOAs can call this function");
+        number = num;
     }
 }

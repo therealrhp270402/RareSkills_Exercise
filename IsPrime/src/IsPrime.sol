@@ -7,5 +7,17 @@ contract IsPrime {
      */
     function isPrime(uint256 number) public view returns (bool) {
         // your code here
+        if(number < 2) return false;
+        if(number == 2) return true;
+        if(number % 2 == 0) return false;
+
+        // Check for factors from 3 to the square root of the number
+        for(uint256 i = 3; i * i <= number; i += 2) {
+            if(number % i == 0) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

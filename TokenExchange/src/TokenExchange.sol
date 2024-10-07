@@ -27,6 +27,7 @@ contract SkillsCoin is ERC20 {
     // Mint to the caller
     function mint(uint256 amount) public {
         // your code here
+        _mint(msg.sender, amount);
     }
 }
 
@@ -44,5 +45,7 @@ contract RareCoin is ERC20 {
         // this will fail if there is insufficient approval or balance
         // require(ok, "call failed");
         // more code
+        require(skillsCoin.transferFrom(msg.sender, address(this), amount), "Insufficiennt approval of balance");
+        _mint(msg.sender, amount);
     }
 }

@@ -10,7 +10,7 @@ contract Divide {
      */
 
     function calculateInterest(uint256 amount) external pure returns (uint256) {
-        uint256 x = (PERCENTAGE_INTEREST / 100) * amount;
-        return x;
+        uint256 interest = (PERCENTAGE_INTEREST* amount)  / 100;
+        return interest;
     }
 }

@@ -16,5 +16,26 @@ contract FilterOddNumbers {
         returns (uint256[] memory)
     {
         // your code here
+        // Count the number of the even numbers
+        uint256 evenCount = 0;
+        for(uint256 i = 0; i < _arr.length; i++) {
+            if(_arr[i] % 2 == 0) {
+                evenCount++;
+            }
+        }
+
+        // Declare a new array with the size of evenCount
+        uint256[] memory evenNumbers = new uint256[](evenCount);
+
+        // Populate the new array with even numbers
+        uint256 index = 0;
+        for(uint256 i = 0; i < _arr.length; i++) {
+            if(_arr[i] % 2 == 0) {
+                evenNumbers[index] = _arr[i];
+                index++;
+            }
+        }
+
+        return evenNumbers;
     }
 }

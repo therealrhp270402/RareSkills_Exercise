@@ -15,5 +15,24 @@ contract DistributeV2 {
 
     function distributeEther(address[] memory addresses) public {
         // your code here
+        // Ensure that there are addresses to distribute to
+        require(addresses.length > 0, "No addresses provided");
+
+        // Get the total balance of the contract
+        uint256 totalBalance = address(this).balance;
+
+        // Calculate the amount to distribute to each address
+        uint256 amountPerAddress = totalBalance / addresses.length;
+
+        // Ensure that there is enough Ether to distribute
+        require(amountPerAddress > 0, "Indusfficeint balance to distribute");
+
+        // Distribute Ether to each address using a loop
+        for(uint256 i = 0; i < addresses.length; i++) {
+            (bool success, ) = payable(address[i]).call{value: amountPerAddress}("");
+            require(success, "Tranfser failed to one of the addresses");
+        }
     }
+
+    receive() external payable {}
 }
